@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="qZl-Z9-lOm">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Main Menu View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MainMenuViewController" customModule="Reversi" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,11 +16,91 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose Oponent" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nwl-bh-nDG">
+                                <rect key="frame" x="224" y="250" width="153" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QpN-sv-zA9">
+                                <rect key="frame" x="272" y="282" width="56" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Player">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Qj7-iM-Lnu" kind="show" identifier="PlayerGame" id="f0g-RV-XAB"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oQh-0A-63p">
+                                <rect key="frame" x="285" y="326" width="30" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="AI">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Qj7-iM-Lnu" kind="show" id="bV9-0h-aOX"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="QpN-sv-zA9" firstAttribute="top" secondItem="Nwl-bh-nDG" secondAttribute="bottom" constant="8" symbolic="YES" id="04i-3B-69v"/>
+                            <constraint firstItem="QpN-sv-zA9" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3gx-25-AoN"/>
+                            <constraint firstItem="oQh-0A-63p" firstAttribute="top" secondItem="QpN-sv-zA9" secondAttribute="bottom" constant="8" symbolic="YES" id="LQd-yo-qSP"/>
+                            <constraint firstItem="oQh-0A-63p" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Udh-aD-WU8"/>
+                            <constraint firstItem="Nwl-bh-nDG" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="V62-KV-ffH"/>
+                            <constraint firstItem="QpN-sv-zA9" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="hhR-FI-ZxZ"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="k0O-GR-vQ2"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1069" y="-305"/>
+        </scene>
+        <!--Game View Controller-->
+        <scene sceneID="yIt-9p-9FK">
+            <objects>
+                <viewController id="Qj7-iM-Lnu" customClass="GameViewController" customModule="Reversi" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xsE-8d-KsF"/>
+                        <viewControllerLayoutGuide type="bottom" id="6yw-NA-eSf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="qLi-kG-adL">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="gameView" destination="qLi-kG-adL" id="sSd-iP-cc6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="l9p-Cc-X54" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1730" y="-305"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="hVE-66-6QT">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qZl-Z9-lOm" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ELb-Z7-0DK">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="1sW-tS-2kJ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tz5-RS-c5B" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="289" y="-305"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="f0g-RV-XAB"/>
+    </inferredMetricsTieBreakers>
 </document>
