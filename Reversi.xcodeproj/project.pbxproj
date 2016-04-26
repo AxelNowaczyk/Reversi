@@ -14,6 +14,7 @@
 		7A619E7A1CCFCDC9001AEF58 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A619E781CCFCDC9001AEF58 /* LaunchScreen.storyboard */; };
 		7A619E851CCFCDC9001AEF58 /* ReversiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A619E841CCFCDC9001AEF58 /* ReversiTests.swift */; };
 		7A619E901CCFCDC9001AEF58 /* ReversiUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A619E8F1CCFCDC9001AEF58 /* ReversiUITests.swift */; };
+		7A619E9E1CCFCE30001AEF58 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 7A619E9D1CCFCE30001AEF58 /* .gitignore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		7A619E8B1CCFCDC9001AEF58 /* ReversiUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReversiUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A619E8F1CCFCDC9001AEF58 /* ReversiUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReversiUITests.swift; sourceTree = "<group>"; };
 		7A619E911CCFCDC9001AEF58 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7A619E9D1CCFCE30001AEF58 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 		7A619E631CCFCDC9001AEF58 = {
 			isa = PBXGroup;
 			children = (
+				7A619E9D1CCFCE30001AEF58 /* .gitignore */,
 				7A619E6E1CCFCDC9001AEF58 /* Reversi */,
 				7A619E831CCFCDC9001AEF58 /* ReversiTests */,
 				7A619E8E1CCFCDC9001AEF58 /* ReversiUITests */,
@@ -229,6 +232,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A619E9E1CCFCE30001AEF58 /* .gitignore in Resources */,
 				7A619E7A1CCFCDC9001AEF58 /* LaunchScreen.storyboard in Resources */,
 				7A619E771CCFCDC9001AEF58 /* Assets.xcassets in Resources */,
 				7A619E751CCFCDC9001AEF58 /* Main.storyboard in Resources */,
