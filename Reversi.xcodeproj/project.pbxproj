@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7A2DD5051CD8901900F883E2 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2DD5041CD8901900F883E2 /* Player.swift */; };
+		7A2DD5071CD890A100F883E2 /* GameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2DD5061CD890A100F883E2 /* GameEngine.swift */; };
 		7A619E701CCFCDC9001AEF58 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A619E6F1CCFCDC9001AEF58 /* AppDelegate.swift */; };
 		7A619E721CCFCDC9001AEF58 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A619E711CCFCDC9001AEF58 /* ViewController.swift */; };
 		7A619E751CCFCDC9001AEF58 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A619E731CCFCDC9001AEF58 /* Main.storyboard */; };
@@ -37,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7A2DD5041CD8901900F883E2 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		7A2DD5061CD890A100F883E2 /* GameEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameEngine.swift; sourceTree = "<group>"; };
 		7A619E6C1CCFCDC9001AEF58 /* Reversi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reversi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A619E6F1CCFCDC9001AEF58 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7A619E711CCFCDC9001AEF58 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -107,6 +111,8 @@
 				7A619E6F1CCFCDC9001AEF58 /* AppDelegate.swift */,
 				7A619E711CCFCDC9001AEF58 /* ViewController.swift */,
 				7A619E731CCFCDC9001AEF58 /* Main.storyboard */,
+				7A2DD5061CD890A100F883E2 /* GameEngine.swift */,
+				7A2DD5041CD8901900F883E2 /* Player.swift */,
 				7A619EA01CCFD484001AEF58 /* MainMenuViewController.swift */,
 				7A619EA21CCFD492001AEF58 /* GameViewController.swift */,
 				7A619E761CCFCDC9001AEF58 /* Assets.xcassets */,
@@ -267,8 +273,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				7A619EA31CCFD492001AEF58 /* GameViewController.swift in Sources */,
+				7A2DD5071CD890A100F883E2 /* GameEngine.swift in Sources */,
 				7A619EA11CCFD484001AEF58 /* MainMenuViewController.swift in Sources */,
 				7A619E721CCFCDC9001AEF58 /* ViewController.swift in Sources */,
+				7A2DD5051CD8901900F883E2 /* Player.swift in Sources */,
 				7A619E701CCFCDC9001AEF58 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -494,6 +502,7 @@
 				7A619E961CCFCDC9001AEF58 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7A619E971CCFCDC9001AEF58 /* Build configuration list for PBXNativeTarget "ReversiTests" */ = {
 			isa = XCConfigurationList;
@@ -502,6 +511,7 @@
 				7A619E991CCFCDC9001AEF58 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7A619E9A1CCFCDC9001AEF58 /* Build configuration list for PBXNativeTarget "ReversiUITests" */ = {
 			isa = XCConfigurationList;
@@ -510,6 +520,7 @@
 				7A619E9C1CCFCDC9001AEF58 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

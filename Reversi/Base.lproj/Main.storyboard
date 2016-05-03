@@ -3,6 +3,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Main Menu View Controller-->
@@ -30,7 +32,7 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Qj7-iM-Lnu" kind="show" identifier="PlayerGame" id="f0g-RV-XAB"/>
+                                    <segue destination="Qj7-iM-Lnu" kind="showDetail" identifier="PlayerGame" action="showViewController:sender:" id="f0g-RV-XAB"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oQh-0A-63p">
@@ -40,7 +42,7 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Qj7-iM-Lnu" kind="show" id="bV9-0h-aOX"/>
+                                    <segue destination="Qj7-iM-Lnu" kind="showDetail" identifier="AIGame" action="showViewController:sender:" id="bV9-0h-aOX"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -58,7 +60,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1069" y="-305"/>
+            <point key="canvasLocation" x="806" y="-305"/>
         </scene>
         <!--Game View Controller-->
         <scene sceneID="yIt-9p-9FK">
@@ -71,15 +73,86 @@
                     <view key="view" contentMode="scaleToFill" id="qLi-kG-adL">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player 1 score: " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="ErU-dT-4YZ">
+                                <rect key="frame" x="20" y="20" width="134" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="hhe-yI-tkd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="score 1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="O88-kb-TWG">
+                                <rect key="frame" x="162" y="20" width="134" height="40"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player 2 score: " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="kmE-1S-8Ou">
+                                <rect key="frame" x="304" y="20" width="134" height="40"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="score 2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="QHJ-dG-353">
+                                <rect key="frame" x="446" y="20" width="134" height="40"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GQ3-8B-Adr">
+                                <rect key="frame" x="20" y="68" width="560" height="560"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="GQ3-8B-Adr" secondAttribute="height" multiplier="1:1" id="0RB-nJ-Ef2"/>
+                                </constraints>
+                            </view>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rbu-KM-O36">
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <items>
+                                    <navigationItem id="Bnr-pg-thP">
+                                        <barButtonItem key="rightBarButtonItem" title="Play Again" id="cuO-fI-IhU">
+                                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="kmE-1S-8Ou" firstAttribute="width" secondItem="ErU-dT-4YZ" secondAttribute="width" id="0lX-pe-nkR"/>
+                            <constraint firstItem="ErU-dT-4YZ" firstAttribute="top" secondItem="xsE-8d-KsF" secondAttribute="bottom" id="1bd-yF-ont"/>
+                            <constraint firstItem="O88-kb-TWG" firstAttribute="height" secondItem="ErU-dT-4YZ" secondAttribute="height" id="5yy-1k-Eln"/>
+                            <constraint firstItem="GQ3-8B-Adr" firstAttribute="top" secondItem="QHJ-dG-353" secondAttribute="bottom" constant="8" symbolic="YES" id="6RE-iy-Q4O"/>
+                            <constraint firstItem="QHJ-dG-353" firstAttribute="top" secondItem="xsE-8d-KsF" secondAttribute="bottom" id="6kx-2R-9Ex"/>
+                            <constraint firstItem="QHJ-dG-353" firstAttribute="leading" secondItem="kmE-1S-8Ou" secondAttribute="trailing" constant="8" symbolic="YES" id="BeU-jO-bnS"/>
+                            <constraint firstItem="QHJ-dG-353" firstAttribute="height" secondItem="kmE-1S-8Ou" secondAttribute="height" id="Byz-TF-QsS"/>
+                            <constraint firstItem="GQ3-8B-Adr" firstAttribute="top" secondItem="kmE-1S-8Ou" secondAttribute="bottom" constant="8" symbolic="YES" id="GFT-OQ-saF"/>
+                            <constraint firstItem="O88-kb-TWG" firstAttribute="width" secondItem="ErU-dT-4YZ" secondAttribute="width" id="LBI-yj-43v"/>
+                            <constraint firstItem="kmE-1S-8Ou" firstAttribute="top" secondItem="xsE-8d-KsF" secondAttribute="bottom" id="MKC-1E-c8T"/>
+                            <constraint firstItem="O88-kb-TWG" firstAttribute="top" secondItem="xsE-8d-KsF" secondAttribute="bottom" id="MQX-m9-0b3"/>
+                            <constraint firstItem="kmE-1S-8Ou" firstAttribute="leading" secondItem="O88-kb-TWG" secondAttribute="trailing" constant="8" symbolic="YES" id="PmZ-3D-uRo"/>
+                            <constraint firstItem="6yw-NA-eSf" firstAttribute="top" secondItem="GQ3-8B-Adr" secondAttribute="bottom" priority="750" constant="8" symbolic="YES" id="RvN-rS-gRc"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="ErU-dT-4YZ" secondAttribute="leading" id="aMo-hE-vUx"/>
+                            <constraint firstItem="QHJ-dG-353" firstAttribute="width" secondItem="kmE-1S-8Ou" secondAttribute="width" id="bga-ih-bGI"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="GQ3-8B-Adr" secondAttribute="trailing" id="h36-Ol-8pA"/>
+                            <constraint firstItem="GQ3-8B-Adr" firstAttribute="top" secondItem="O88-kb-TWG" secondAttribute="bottom" constant="8" symbolic="YES" id="iCT-LF-tVg"/>
+                            <constraint firstItem="kmE-1S-8Ou" firstAttribute="height" secondItem="ErU-dT-4YZ" secondAttribute="height" id="pHY-cz-1uD"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="GQ3-8B-Adr" secondAttribute="leading" id="raJ-C0-e5P"/>
+                            <constraint firstItem="O88-kb-TWG" firstAttribute="leading" secondItem="ErU-dT-4YZ" secondAttribute="trailing" constant="8" symbolic="YES" id="tDT-NE-IQc"/>
+                            <constraint firstItem="GQ3-8B-Adr" firstAttribute="top" secondItem="ErU-dT-4YZ" secondAttribute="bottom" constant="8" symbolic="YES" id="yK0-z1-glV"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="QHJ-dG-353" secondAttribute="trailing" id="ybc-Oj-HO4"/>
+                        </constraints>
                     </view>
                     <connections>
-                        <outlet property="gameView" destination="qLi-kG-adL" id="sSd-iP-cc6"/>
+                        <outlet property="bigView" destination="qLi-kG-adL" id="t8V-63-JKj"/>
+                        <outlet property="gameView" destination="GQ3-8B-Adr" id="PgN-fe-pei"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l9p-Cc-X54" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1730" y="-305"/>
+            <point key="canvasLocation" x="1642" y="-394"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hVE-66-6QT">
@@ -89,6 +162,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ELb-Z7-0DK">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -97,10 +171,10 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tz5-RS-c5B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="289" y="-305"/>
+            <point key="canvasLocation" x="83" y="-305"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="f0g-RV-XAB"/>
+        <segue reference="bV9-0h-aOX"/>
     </inferredMetricsTieBreakers>
 </document>

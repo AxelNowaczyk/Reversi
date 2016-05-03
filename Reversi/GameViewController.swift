@@ -12,50 +12,78 @@ class GameViewController: UIViewController {
 
     @IBOutlet var gameView: UIView!
     
+    @IBOutlet var bigView: UIView!
     private struct Board{
         static let height   = 8
         static let width    = 8
     }
     
     var cells = [UIView]()
+//    var gameViewHeight: CGFloat{
+//        return gameView.bounds.size.height - (self.navigationController?.size preferredContentSize.height)!
+//    }
+    
+
     
     var cellSize: CGSize{
         let width   = gameView.bounds.size.width / CGFloat(Board.width)
         let height  = gameView.bounds.size.height / CGFloat(Board.height)
         return CGSize(width: width, height: height)
     }
+    var horizontalLineSize: CGSize{
+        let width   = CGFloat(2)
+        let height  = gameView.bounds.size.height
+        return CGSize(width: width, height: height)
+    }
+    var verticalLineSize: CGSize{
+        let width   = gameView.bounds.size.width
+        let height  = CGFloat(2)
+        return CGSize(width: width, height: height)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-         createCells()
         self.navigationController!.navigationBar.hidden = false
     }
 
+    override func viewDidLayoutSubviews() {
+        createCells()
+        drawLines()
+    }
+    
     private func createCells(){
+        var counter = 0
         for width in 0..<Board.width{
             for height in 0..<Board.height{
-                let frame = CGRect(origin: CGPoint(x: CGFloat(width)*cellSize.width, y: CGFloat(height)*cellSize.height),size: cellSize)
-                
+                defer{
+                    counter+=1
+                }
+                let origin = CGPoint(x: CGFloat(width)*cellSize.width, y: CGFloat(height)*cellSize.height)
+                let frame = CGRect(origin: origin,size: cellSize)
                 let cellView = UIView(frame: frame)
-                cellView.backgroundColor = UIColor.randomColor
-                
+                cellView.backgroundColor = UIColor.whiteColor()
+                cellView.tag = counter
+                cellView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(GameViewController.viewTapped(_:))))
                 gameView.addSubview(cellView)
                 cells.append(cellView)
             }
         }
     }
-}
-private extension UIColor{
-    class var randomColor: UIColor{
-        switch arc4random()%7{
-        case 0: return UIColor.redColor()
-        case 1: return UIColor.blueColor()
-        case 2: return UIColor.brownColor()
-        case 3: return UIColor.grayColor()
-        case 4: return UIColor.greenColor()
-        case 5: return UIColor.purpleColor()
-        default: return UIColor.yellowColor()
-            
+    func viewTapped(sender: UIView){
+        print("tap \(sender.tag)")
+    }
+    private func drawLines(){
+        for width in 0...Board.width{
+            let horizontalLine = CGRect(origin: CGPoint(x: CGFloat(width)*cellSize.width-1, y: CGFloat(0)),size: horizontalLineSize)
+            let cellView = UIView(frame: horizontalLine)
+            cellView.backgroundColor = UIColor.blackColor()
+            gameView.addSubview(cellView)
+        }
+        for height in 0...Board.height{
+            let verticalLine = CGRect(origin: CGPoint(x: CGFloat(0), y: CGFloat(height)*cellSize.height-1),size: verticalLineSize)
+            let cellView = UIView(frame: verticalLine)
+            cellView.backgroundColor = UIColor.blackColor()
+            gameView.addSubview(cellView)
         }
     }
 }
