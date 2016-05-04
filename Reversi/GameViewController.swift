@@ -11,19 +11,20 @@ import UIKit
 class GameViewController: UIViewController {
 
     @IBOutlet var gameView: UIView!
+    var reversi = GameEngine()
     
     @IBOutlet var bigView: UIView!
+    
     private struct Board{
         static let height   = 8
         static let width    = 8
     }
-    
-    var cells = [UIView]()
-//    var gameViewHeight: CGFloat{
-//        return gameView.bounds.size.height - (self.navigationController?.size preferredContentSize.height)!
-//    }
-    
-
+    private struct PlayerColor{
+        static let Player1  = UIColor.redColor()
+        static let Player2  = UIColor.blueColor()
+        static let NoOne    = UIColor.whiteColor()
+    }
+    var cells = [[UIView]]()
     
     var cellSize: CGSize{
         let width   = gameView.bounds.size.width / CGFloat(Board.width)
@@ -49,28 +50,46 @@ class GameViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         createCells()
         drawLines()
+        updateBoard()
     }
-    
-    private func createCells(){
-        var counter = 0
-        for width in 0..<Board.width{
-            for height in 0..<Board.height{
-                defer{
-                    counter+=1
+    func updateBoard() {
+        for y in 0..<Board.height {
+            for x in 0..<Board.width {
+                
+                switch reversi.board.board[x][y] {
+                case .Player1:
+                    cells[x][y].backgroundColor = PlayerColor.Player1
+                case .Player2:
+                    cells[x][y].backgroundColor = PlayerColor.Player2
+                case .Nothing:
+                    cells[x][y].backgroundColor = PlayerColor.NoOne
                 }
-                let origin = CGPoint(x: CGFloat(width)*cellSize.width, y: CGFloat(height)*cellSize.height)
-                let frame = CGRect(origin: origin,size: cellSize)
-                let cellView = UIView(frame: frame)
-                cellView.backgroundColor = UIColor.whiteColor()
-                cellView.tag = counter
-                cellView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(GameViewController.viewTapped(_:))))
-                gameView.addSubview(cellView)
-                cells.append(cellView)
             }
         }
     }
-    func viewTapped(sender: UIView){
-        print("tap \(sender.tag)")
+    private func createCells(){
+        for height in 0..<Board.height{
+            var row = [UIView]()
+            for width in 0..<Board.width{
+                let origin = CGPoint(x: CGFloat(width)*cellSize.width, y: CGFloat(height)*cellSize.height)
+                let frame = CGRect(origin: origin,size: cellSize)
+                let cellView = UIView(frame: frame)
+                cellView.tag = height*10+width // consists of 2 ints 1st height, 2nd width
+                cellView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(GameViewController.viewTapped(_:))))
+                gameView.addSubview(cellView)
+                row.append(cellView)
+            }
+            cells.append(row)
+            
+        }
+    }
+    func viewTapped(sender: AnyObject){
+        let tap = sender as! UITapGestureRecognizer
+        if let view = tap.view{
+            view.backgroundColor = UIColor.yellowColor()
+            print(view.tag)
+        }
+        updateBoard()
     }
     private func drawLines(){
         for width in 0...Board.width{
