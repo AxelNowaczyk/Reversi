@@ -83,7 +83,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="score 1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="O88-kb-TWG">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="score 1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="O88-kb-TWG" userLabel="Score1">
                                 <rect key="frame" x="162" y="20" width="134" height="40"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -146,8 +146,11 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="bigView" destination="qLi-kG-adL" id="t8V-63-JKj"/>
-                        <outlet property="gameView" destination="GQ3-8B-Adr" id="PgN-fe-pei"/>
+                        <outlet property="gameView" destination="GQ3-8B-Adr" id="U1d-kE-0aK"/>
+                        <outlet property="player1Label" destination="ErU-dT-4YZ" id="B5t-2Y-GMH"/>
+                        <outlet property="player2Label" destination="kmE-1S-8Ou" id="0vz-gv-iED"/>
+                        <outlet property="score1" destination="O88-kb-TWG" id="Lkw-zP-N56"/>
+                        <outlet property="score2" destination="QHJ-dG-353" id="9Xs-le-szV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l9p-Cc-X54" userLabel="First Responder" sceneMemberID="firstResponder"/>

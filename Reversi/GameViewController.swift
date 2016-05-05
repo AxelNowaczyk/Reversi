@@ -13,16 +13,21 @@ class GameViewController: UIViewController {
     @IBOutlet var gameView: UIView!
     var reversi = GameEngine()
     
-    @IBOutlet var bigView: UIView!
+    @IBOutlet var player1Label: UILabel!
+    @IBOutlet var score1: UILabel!
+    @IBOutlet var player2Label: UILabel!
+    @IBOutlet var score2: UILabel!
     
     private struct Board{
         static let height   = 8
         static let width    = 8
     }
     private struct PlayerColor{
-        static let Player1  = UIColor.redColor()
-        static let Player2  = UIColor.blueColor()
-        static let NoOne    = UIColor.whiteColor()
+        static let Player1      = UIColor.redColor()
+        static let Player2      = UIColor.blueColor()
+        static let NoOne        = UIColor.whiteColor()
+        static let PossibleMove = UIColor.yellowColor()
+        
     }
     var cells = [[UIView]]()
     
@@ -45,14 +50,32 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController!.navigationBar.hidden = false
+        
     }
-
+    
     override func viewDidLayoutSubviews() {
         createCells()
         drawLines()
-        updateBoard()
+        update()
     }
-    func updateBoard() {
+    func update(){
+        updateBoard()
+        updateLabels()
+        updatePossibleMovesOnBoard()
+        print(reversi.turn)
+    }
+    private func updateLabels(){
+        score1.text = "\(reversi.board.getScore(of: Choice.Player1))"
+        score2.text = "\(reversi.board.getScore(of: Choice.Player2))"
+    }
+    private func updatePossibleMovesOnBoard(){
+        let possibleMoves = reversi.givePossibleMoves()
+        
+        for move in possibleMoves{
+            cells[move.x][move.y].backgroundColor = PlayerColor.PossibleMove
+        }
+    }
+    private func updateBoard() {
         for y in 0..<Board.height {
             for x in 0..<Board.width {
                 
@@ -85,11 +108,20 @@ class GameViewController: UIViewController {
     }
     func viewTapped(sender: AnyObject){
         let tap = sender as! UITapGestureRecognizer
-        if let view = tap.view{
-            view.backgroundColor = UIColor.yellowColor()
-            print(view.tag)
+        guard let view = tap.view else {
+            return
         }
-        updateBoard()
+        let x = view.tag/10
+        let y = view.tag%10
+        let point = Point(x,y: y)
+        let possibleMoves = reversi.givePossibleMoves()
+        if possibleMoves.contains(point) {
+            print("valid choice")
+            reversi.board.makeMove(reversi.turn, position: point)
+            reversi.nextTurn
+        }
+        update()
+        
     }
     private func drawLines(){
         for width in 0...Board.width{

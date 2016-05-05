@@ -9,13 +9,9 @@
 import UIKit
 
 class MainMenuViewController: UIViewController {
-
-    let board = Board()
     
     override func viewWillAppear(animated: Bool) {
         self.navigationController!.navigationBar.hidden = true
-        print(board.description)
-        print(board.givePossibleMoves(Choice.Player1))
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
