@@ -9,10 +9,8 @@
 import Foundation
 import UIKit
 
-class Player {
-    let color: UIColor
-    
-    init(color: UIColor){
-        self.color = color
+class AI {
+
+    init(){        
     }
 }

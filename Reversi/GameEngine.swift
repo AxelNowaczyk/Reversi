@@ -20,7 +20,7 @@ class GameEngine: CustomStringConvertible {
                     updateTurn()
                     posMoves = board.givePossibleMoves(turn)
                     if posMoves.count == 0 {
-                        print("no moves")
+                        turn = Choice.Nothing
                     }
                 }
             }
@@ -44,7 +44,7 @@ class GameEngine: CustomStringConvertible {
         return board.description
     }
 }
-class Board: CustomStringConvertible {// make some code cleaning
+class Board: CustomStringConvertible {// make some code cleaning // works bad for more than 1 on diagonals (giveMoves and makeMove)
 
     private struct Size{
         static let Width = 8;
@@ -779,6 +779,17 @@ func <(lhs: Point, rhs: Point) -> Bool{
     return lhs.hashValue < rhs.hashValue
 }
 
-enum Choice {
+enum Choice: CustomStringConvertible {
     case Nothing, Player1, Player2
+    
+    var description: String{
+        switch self {
+        case .Player1:
+            return "P1"
+        case .Player2:
+            return "P2"
+        case .Nothing:
+            return "Nothing"
+        }
+    }
 }

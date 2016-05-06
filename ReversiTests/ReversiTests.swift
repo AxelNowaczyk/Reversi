@@ -58,14 +58,6 @@ class ReversiTests: XCTestCase {
 //        let res = board.givePossibleMoves(Choice.Player2).sort()
 //        XCTAssert(poss == res)
 //    }
-        func testWithDiagonalsP2() {
-            //let poss = [Point(2,y: 3),Point(3,y: 2),Point(5,y: 4),Point(4,y: 5)].sort()
-            board.makeMove(Choice.Player1, position: Point(2,y: 3))
-            let res = board.givePossibleMoves(Choice.Player1).sort()
-            //XCTAssert(poss == res)
-            print(board)
-        }
-    
     //        board[3][4] = Choice.Player1
     //        board[3][5] = Choice.Player1
     

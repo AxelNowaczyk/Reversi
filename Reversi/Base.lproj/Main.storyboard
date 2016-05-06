@@ -151,6 +151,7 @@
                         <outlet property="player2Label" destination="kmE-1S-8Ou" id="0vz-gv-iED"/>
                         <outlet property="score1" destination="O88-kb-TWG" id="Lkw-zP-N56"/>
                         <outlet property="score2" destination="QHJ-dG-353" id="9Xs-le-szV"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="MainMenu" id="PIe-yx-EgE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l9p-Cc-X54" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -178,6 +179,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="PIe-yx-EgE"/>
         <segue reference="bV9-0h-aOX"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -12,9 +12,11 @@ class GameViewController: UIViewController {
 
     @IBOutlet var gameView: UIView!
     var reversi = GameEngine()
-    
+    var ai: AI?
     @IBOutlet var player1Label: UILabel!
     @IBOutlet var score1: UILabel!
+    var player2name = "P2"
+    var player1name = "P1"
     @IBOutlet var player2Label: UILabel!
     @IBOutlet var score2: UILabel!
     
@@ -50,23 +52,61 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController!.navigationBar.hidden = false
-        
+        setupLabels()
     }
-    
+    private func setupLabels(){
+        player1Label.textColor = PlayerColor.Player1
+        player2Label.textColor = PlayerColor.Player2
+        score1.textColor = PlayerColor.Player1
+        score2.textColor = PlayerColor.Player2
+        
+        player2Label.text = player2name + " score:"
+        player1Label.text = player1name + " score:"
+    }
     override func viewDidLayoutSubviews() {
         createCells()
         drawLines()
         update()
     }
+    private struct Segues{
+        static let MainMenu      = "MainMenu"
+    }
     func update(){
         updateBoard()
         updateLabels()
         updatePossibleMovesOnBoard()
-        print(reversi.turn)
+        if reversi.turn == Choice.Nothing {
+            runEndGameAlert()
+        }
+    }
+    private func runEndGameAlert(){
+        let msg = betterPlayer + " won\n"
+            + player1Label.text! + " " + score1.text!
+            + "\n" + player2Label.text! + " " + score2.text!
+        let alert = UIAlertController(title: "Game Over", message: msg
+            , preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Play Again",
+            style: UIAlertActionStyle.Default,handler: startNewGame))
+        alert.addAction(UIAlertAction(title: "Main Menu",
+            style: UIAlertActionStyle.Default,handler: { action in
+                self.performSegueWithIdentifier(Segues.MainMenu, sender: self)}))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    var betterPlayer: String{
+        if Int(score1.text!) > Int(score2.text!){
+            return player1name
+        }
+        return player2name
+    }
+    private func startNewGame(alert: UIAlertAction!){
+        reversi = GameEngine()
+        update()
     }
     private func updateLabels(){
         score1.text = "\(reversi.board.getScore(of: Choice.Player1))"
         score2.text = "\(reversi.board.getScore(of: Choice.Player2))"
+        self.navigationController?.navigationBar.topItem?.title =
+                                reversi.turn.description+" turn"
     }
     private func updatePossibleMovesOnBoard(){
         let possibleMoves = reversi.givePossibleMoves()
@@ -116,7 +156,6 @@ class GameViewController: UIViewController {
         let point = Point(x,y: y)
         let possibleMoves = reversi.givePossibleMoves()
         if possibleMoves.contains(point) {
-            print("valid choice")
             reversi.board.makeMove(reversi.turn, position: point)
             reversi.nextTurn
         }
