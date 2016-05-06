@@ -44,7 +44,7 @@ class GameEngine: CustomStringConvertible {
         return board.description
     }
 }
-class Board: CustomStringConvertible {
+class Board: CustomStringConvertible {// make some code cleaning
 
     private struct Size{
         static let Width = 8;
@@ -71,9 +71,6 @@ class Board: CustomStringConvertible {
         
         board[3][4] = Choice.Player2
         board[4][3] = Choice.Player2
-        
-//        board[3][4] = Choice.Player1
-//        board[3][5] = Choice.Player1
     }
 
     func makeMove(player: Choice,position: Point) {
@@ -106,9 +103,8 @@ class Board: CustomStringConvertible {
                 for x_index in x...position.x {
                     board[x_index][position.y] = player
                 }
-            } else {
-                return
             }
+            return
         }
     }
     private func makeMove_Vertical_B(player: Choice,position: Point) {
@@ -125,9 +121,8 @@ class Board: CustomStringConvertible {
                 for x_index in position.x...x {
                     board[x_index][position.y] = player
                 }
-            } else {
-                return
             }
+            return
         }
 
     }
@@ -146,9 +141,8 @@ class Board: CustomStringConvertible {
                 for y_index in y...position.y {
                     board[position.x][y_index] = player
                 }
-            } else {
-                return
             }
+            return
         }
     }
     private func makeMove_Horizontal_R(player: Choice,position: Point) {
@@ -165,22 +159,113 @@ class Board: CustomStringConvertible {
                 for y_index in position.y...y {
                     board[position.x][y_index] = player
                 }
-            } else {
-                return
             }
+            return
         }
     }
     private func makeMove_Diagonal_BL(player: Choice,position: Point) {
-        
+        let (thisPlayer, otherPlayer) = getPlayers(player)
+        var y = position.y - 1
+        var x = position.x + 1
+        while y >= 0 && x < Size.Width {
+            defer{
+                y -= 1
+                x += 1
+            }
+            if board[x][y] == otherPlayer {
+                continue
+            }
+            if board[x][y] == thisPlayer {
+                var y2 = position.y - 1
+                var x2 = position.x + 1
+                while x2 <= x && y2 >= y {
+                    defer{
+                        y2 -= 1
+                        x2 += 1
+                    }
+                    board[x2][y2] = player
+                }
+            }
+            return
+        }
     }
     private func makeMove_Diagonal_BR(player: Choice,position: Point) {
-        
+        let (thisPlayer, otherPlayer) = getPlayers(player)
+        var y = position.y - 1
+        var x = position.x - 1
+        while y >= 0 && x >= 0 {
+            defer{
+                y -= 1
+                x -= 1
+            }
+            if board[x][y] == otherPlayer {
+                continue
+            }
+            if board[x][y] == thisPlayer {
+                var y2 = position.y - 1
+                var x2 = position.x - 1
+                while x2 >= x && y2 >= y {
+                    defer{
+                        y2 -= 1
+                        x2 -= 1
+                    }
+                    board[x2][y2] = player
+                }
+            }
+            return
+        }
     }
     private func makeMove_Diagonal_TL(player: Choice,position: Point) {
-        
+        let (thisPlayer, otherPlayer) = getPlayers(player)
+        var y = position.y + 1
+        var x = position.x + 1
+        while y < Size.Height && x < Size.Width {
+            defer{
+                y += 1
+                x += 1
+            }
+            if board[x][y] == otherPlayer {
+                continue
+            }
+            if board[x][y] == thisPlayer {
+                var y2 = position.y + 1
+                var x2 = position.x + 1
+                while x2 <= x && y2 <= y {
+                    defer{
+                        y2 += 1
+                        x2 += 1
+                    }
+                    board[x2][y2] = player
+                }
+            }
+            return
+        }
     }
     private func makeMove_Diagonal_TR(player: Choice,position: Point) {
-        
+        let (thisPlayer, otherPlayer) = getPlayers(player)
+        var y = position.y + 1
+        var x = position.x - 1
+        while y < Size.Height && x >= 0 {
+            defer{
+                y += 1
+                x -= 1
+            }
+            if board[x][y] == otherPlayer {
+                continue
+            }
+            if board[x][y] == thisPlayer {
+                var y2 = position.y + 1
+                var x2 = position.x - 1
+                while x2 >= x && y2 <= y {
+                    defer{
+                        y2 += 1
+                        x2 -= 1
+                    }
+                    board[x2][y2] = player
+                }
+            }
+            return
+        }
     }
     func givePossibleMoves(player: Choice) -> [Point]{
         var possMoves = givePossibleMoves_Horizontal(player) +
@@ -272,10 +357,7 @@ class Board: CustomStringConvertible {
         let (thisPlayer, otherPlayer) = getPlayers(player)
         
         for colIndex in 0..<Size.Width {
-            for rowIndex in 0..<Size.Height {
-                guard rowIndex != Size.Height-1 else {
-                    continue
-                }
+            for rowIndex in 0..<(Size.Height - 1) {
                 guard board[colIndex][rowIndex] == thisPlayer else {
                     continue
                 }
@@ -300,12 +382,9 @@ class Board: CustomStringConvertible {
         
         for colIndex in 0..<Size.Width {
             var rowIndex = Size.Height-1
-            while rowIndex >= 0{
+            while rowIndex >= 1{
                 defer{
                     rowIndex -= 1
-                }
-                guard rowIndex != 0 else {
-                    continue
                 }
                 guard board[colIndex][rowIndex] == thisPlayer else {
                     continue
@@ -347,9 +426,6 @@ class Board: CustomStringConvertible {
                     y -= 1
                     x += 1
                 }
-                guard x != Size.Width-1 && y != 0 else {
-                    continue
-                }
                 guard board[x][y] == thisPlayer else {
                     continue
                 }
@@ -362,6 +438,9 @@ class Board: CustomStringConvertible {
                     defer{
                         y2 -= 1
                         x2 += 1
+                    }
+                    guard board[x2][y2] == thisPlayer else {
+                        break
                     }
                     if board[x2][y2] == otherPlayer {
                         continue
@@ -392,6 +471,9 @@ class Board: CustomStringConvertible {
                     defer{
                         y2 -= 1
                         x2 += 1
+                    }
+                    guard board[x2][y2] == thisPlayer else {
+                        break
                     }
                     if board[x2][y2] == otherPlayer {
                         continue
@@ -428,6 +510,9 @@ class Board: CustomStringConvertible {
                         y2 += 1
                         x2 -= 1
                     }
+                    guard board[x2][y2] == thisPlayer else {
+                        break
+                    }
                     if board[x2][y2] == otherPlayer {
                         continue
                     } else if board[x2][y2] == Choice.Nothing{
@@ -457,6 +542,9 @@ class Board: CustomStringConvertible {
                     defer{
                         y2 += 1
                         x2 -= 1
+                    }
+                    guard board[x2][y2] == thisPlayer else {
+                        break
                     }
                     if board[x2][y2] == otherPlayer {
                         continue
@@ -499,6 +587,9 @@ class Board: CustomStringConvertible {
                         y2 -= 1
                         x2 -= 1
                     }
+                    guard board[x2][y2] == thisPlayer else {
+                        break
+                    }
                     if board[x2][y2] == otherPlayer {
                         continue
                     } else if board[x2][y2] == Choice.Nothing{
@@ -533,6 +624,9 @@ class Board: CustomStringConvertible {
                     defer{
                         y2 -= 1
                         x2 -= 1
+                    }
+                    guard board[x2][y2] == thisPlayer else {
+                        break
                     }
                     if board[x2][y2] == otherPlayer {
                         continue
@@ -575,6 +669,9 @@ class Board: CustomStringConvertible {
                         y2 += 1
                         x2 += 1
                     }
+                    guard board[x2][y2] == thisPlayer else {
+                        break
+                    }
                     if board[x2][y2] == otherPlayer {
                         continue
                     } else if board[x2][y2] == Choice.Nothing{
@@ -609,6 +706,9 @@ class Board: CustomStringConvertible {
                     defer{
                         y2 += 1
                         x2 += 1
+                    }
+                    guard board[x2][y2] == thisPlayer else {
+                        break
                     }
                     if board[x2][y2] == otherPlayer {
                         continue
