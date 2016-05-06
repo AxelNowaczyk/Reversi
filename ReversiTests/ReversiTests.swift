@@ -60,5 +60,4 @@ class ReversiTests: XCTestCase {
 //    }
     //        board[3][4] = Choice.Player1
     //        board[3][5] = Choice.Player1
-    
 }

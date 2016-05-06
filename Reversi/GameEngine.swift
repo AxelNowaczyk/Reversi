@@ -44,7 +44,7 @@ class GameEngine: CustomStringConvertible {
         return board.description
     }
 }
-class Board: CustomStringConvertible {// make some code cleaning // works bad for more than 1 on diagonals (giveMoves and makeMove)
+class Board: CustomStringConvertible {// make some code cleaning find some good solution for make move and get possible move
 
     private struct Size{
         static let Width = 8;
@@ -176,8 +176,8 @@ class Board: CustomStringConvertible {// make some code cleaning // works bad fo
                 continue
             }
             if board[x][y] == thisPlayer {
-                var y2 = position.y - 1
-                var x2 = position.x + 1
+                var y2 = position.y
+                var x2 = position.x
                 while x2 <= x && y2 >= y {
                     defer{
                         y2 -= 1
@@ -202,8 +202,8 @@ class Board: CustomStringConvertible {// make some code cleaning // works bad fo
                 continue
             }
             if board[x][y] == thisPlayer {
-                var y2 = position.y - 1
-                var x2 = position.x - 1
+                var y2 = position.y
+                var x2 = position.x
                 while x2 >= x && y2 >= y {
                     defer{
                         y2 -= 1
@@ -228,8 +228,8 @@ class Board: CustomStringConvertible {// make some code cleaning // works bad fo
                 continue
             }
             if board[x][y] == thisPlayer {
-                var y2 = position.y + 1
-                var x2 = position.x + 1
+                var y2 = position.y
+                var x2 = position.x
                 while x2 <= x && y2 <= y {
                     defer{
                         y2 += 1
@@ -254,8 +254,8 @@ class Board: CustomStringConvertible {// make some code cleaning // works bad fo
                 continue
             }
             if board[x][y] == thisPlayer {
-                var y2 = position.y + 1
-                var x2 = position.x - 1
+                var y2 = position.y
+                var x2 = position.x
                 while x2 >= x && y2 <= y {
                     defer{
                         y2 += 1
@@ -439,15 +439,12 @@ class Board: CustomStringConvertible {// make some code cleaning // works bad fo
                         y2 -= 1
                         x2 += 1
                     }
-                    guard board[x2][y2] == thisPlayer else {
-                        break
-                    }
                     if board[x2][y2] == otherPlayer {
                         continue
                     } else if board[x2][y2] == Choice.Nothing{
                         possibleMoves.append(Point(x2,y: y2))
-                        break
                     }
+                    break
                 }
             }
         }
@@ -472,15 +469,12 @@ class Board: CustomStringConvertible {// make some code cleaning // works bad fo
                         y2 -= 1
                         x2 += 1
                     }
-                    guard board[x2][y2] == thisPlayer else {
-                        break
-                    }
                     if board[x2][y2] == otherPlayer {
                         continue
                     } else if board[x2][y2] == Choice.Nothing{
                         possibleMoves.append(Point(x2,y: y2))
-                        break
                     }
+                    break
                 }
             }
         }
@@ -510,15 +504,12 @@ class Board: CustomStringConvertible {// make some code cleaning // works bad fo
                         y2 += 1
                         x2 -= 1
                     }
-                    guard board[x2][y2] == thisPlayer else {
-                        break
-                    }
                     if board[x2][y2] == otherPlayer {
                         continue
                     } else if board[x2][y2] == Choice.Nothing{
                         possibleMoves.append(Point(x2,y: y2))
-                        break
                     }
+                    break
                 }
             }
         }
@@ -543,15 +534,12 @@ class Board: CustomStringConvertible {// make some code cleaning // works bad fo
                         y2 += 1
                         x2 -= 1
                     }
-                    guard board[x2][y2] == thisPlayer else {
-                        break
-                    }
                     if board[x2][y2] == otherPlayer {
                         continue
                     } else if board[x2][y2] == Choice.Nothing{
                         possibleMoves.append(Point(x2,y: y2))
-                        break
                     }
+                    break
                 }
             }
         }
@@ -587,15 +575,12 @@ class Board: CustomStringConvertible {// make some code cleaning // works bad fo
                         y2 -= 1
                         x2 -= 1
                     }
-                    guard board[x2][y2] == thisPlayer else {
-                        break
-                    }
                     if board[x2][y2] == otherPlayer {
                         continue
                     } else if board[x2][y2] == Choice.Nothing{
                         possibleMoves.append(Point(x2,y: y2))
-                        break
                     }
+                    break
                 }
             }
         }
@@ -632,8 +617,8 @@ class Board: CustomStringConvertible {// make some code cleaning // works bad fo
                         continue
                     } else if board[x2][y2] == Choice.Nothing{
                         possibleMoves.append(Point(x2,y: y2))
-                        break
                     }
+                    break
                 }
             }
         }
@@ -669,15 +654,12 @@ class Board: CustomStringConvertible {// make some code cleaning // works bad fo
                         y2 += 1
                         x2 += 1
                     }
-                    guard board[x2][y2] == thisPlayer else {
-                        break
-                    }
                     if board[x2][y2] == otherPlayer {
                         continue
                     } else if board[x2][y2] == Choice.Nothing{
                         possibleMoves.append(Point(x2,y: y2))
-                        break
                     }
+                    break
                 }
             }
         }
@@ -707,15 +689,12 @@ class Board: CustomStringConvertible {// make some code cleaning // works bad fo
                         y2 += 1
                         x2 += 1
                     }
-                    guard board[x2][y2] == thisPlayer else {
-                        break
-                    }
                     if board[x2][y2] == otherPlayer {
                         continue
                     } else if board[x2][y2] == Choice.Nothing{
                         possibleMoves.append(Point(x2,y: y2))
-                        break
                     }
+                    break
                 }
             }
         }
