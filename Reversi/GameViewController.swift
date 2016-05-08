@@ -78,6 +78,13 @@ class GameViewController: UIViewController {
         if reversi.turn == Choice.Nothing {
             runEndGameAlert()
         }
+        if ai != nil  && reversi.turn == Choice.Player2{
+            if let bestPoint = ai?.getMove(gameEngine: reversi, depth: 3){
+                reversi.board.makeMove(reversi.turn, position: bestPoint)
+                reversi.nextTurn
+                update()
+            }
+        }
     }
     private func runEndGameAlert(){
         let msg = betterPlayer + " won\n"

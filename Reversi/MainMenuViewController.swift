@@ -36,7 +36,7 @@ class MainMenuViewController: UIViewController {
                     gvc.player2name = "AI"
                     gvc.ai = AI()
                 }
-            case Seques.PlayerGame: break
+//            case Seques.PlayerGame: break
 //                if let gvc = segue.destinationViewController as? GameViewController{
 //                
 //                }

@@ -11,6 +11,17 @@ import Foundation
 class GameEngine: CustomStringConvertible {
     var board = Board()
     private(set) var turn: Choice = Choice.Player1
+    init(){
+        board = Board()
+    }
+    init(gameEngine ge: GameEngine){
+        self.board =  Board(board: ge.board)
+        self.turn = ge.turn
+    }
+    init(board: Board, turn: Choice){
+        self.board = board
+        self.turn = turn
+    }
     var nextTurn: Choice{
         get{
             defer{
@@ -27,8 +38,15 @@ class GameEngine: CustomStringConvertible {
             return turn
         }
     }
+    var gameover: Bool{
+        return turn == Choice.Nothing
+    }
+    
     func givePossibleMoves() -> [Point] {
         return board.givePossibleMoves(turn)
+    }
+    func makeMove(point: Point){
+        return board.makeMove(turn, position: point)
     }
     private func updateTurn() {
         switch turn {
@@ -56,6 +74,11 @@ class Board: CustomStringConvertible {// make some code cleaning find some good 
         createBoard()
         createInitialPosition()
     }
+    
+    init(board: Board){
+        createBoard()
+        fillBoard(with: board)
+    }
     private func createBoard(){
         for _ in 0..<Size.Width {
             var newRaw = [Choice]()
@@ -63,6 +86,13 @@ class Board: CustomStringConvertible {// make some code cleaning find some good 
                 newRaw.append(Choice.Nothing)
             }
             board.append(newRaw)
+        }
+    }
+    private func fillBoard(with board: Board){
+        for x in 0..<Size.Width {
+            for y in 0..<Size.Height {
+                self.board[x][y] = board.board[x][y]
+            }
         }
     }
     private func createInitialPosition(){

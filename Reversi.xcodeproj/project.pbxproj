@@ -18,6 +18,7 @@
 		7A619E9E1CCFCE30001AEF58 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 7A619E9D1CCFCE30001AEF58 /* .gitignore */; };
 		7A619EA11CCFD484001AEF58 /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A619EA01CCFD484001AEF58 /* MainMenuViewController.swift */; };
 		7A619EA31CCFD492001AEF58 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A619EA21CCFD492001AEF58 /* GameViewController.swift */; };
+		7AA729DD1CDFAB6100D08F60 /* weights.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7AA729DC1CDFAB6100D08F60 /* weights.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		7A619E9D1CCFCE30001AEF58 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		7A619EA01CCFD484001AEF58 /* MainMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
 		7A619EA21CCFD492001AEF58 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		7AA729DC1CDFAB6100D08F60 /* weights.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = weights.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				7A619E9D1CCFCE30001AEF58 /* .gitignore */,
+				7AA729DC1CDFAB6100D08F60 /* weights.txt */,
 				7A619E6E1CCFCDC9001AEF58 /* Reversi */,
 				7A619E831CCFCDC9001AEF58 /* ReversiTests */,
 				7A619E8E1CCFCDC9001AEF58 /* ReversiUITests */,
@@ -241,6 +244,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7AA729DD1CDFAB6100D08F60 /* weights.txt in Resources */,
 				7A619E9E1CCFCE30001AEF58 /* .gitignore in Resources */,
 				7A619E7A1CCFCDC9001AEF58 /* LaunchScreen.storyboard in Resources */,
 				7A619E771CCFCDC9001AEF58 /* Assets.xcassets in Resources */,
