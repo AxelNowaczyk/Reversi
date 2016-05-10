@@ -33,7 +33,7 @@ class MainMenuViewController: UIViewController {
                         gvc.reversi.nextTurn
                     default: break
                     }
-                    gvc.player2name = "AI"
+                    GameViewController.PlayerName.Player2 = "AI"
                     gvc.ai = AI()
                 }
 //            case Seques.PlayerGame: break
@@ -44,16 +44,4 @@ class MainMenuViewController: UIViewController {
             }
         }
     }
-//    @IBAction func AIPopupWhoStarts(sender: UIButton) {
-//        let alert = UIAlertController(title: "Do you want to start", message: ""
-//            , preferredStyle: UIAlertControllerStyle.Alert)
-//        alert.addAction(UIAlertAction(title: "Yes",
-//            style: UIAlertActionStyle.Default,handler: { _ in
-//        }))
-//        alert.addAction(UIAlertAction(title: "No",
-//            style: UIAlertActionStyle.Default,handler: { _ in
-//                self.whoStarts = Choice.Player2
-//        }))
-//        self.presentViewController(alert, animated: true, completion: nil)
-//    }
 }

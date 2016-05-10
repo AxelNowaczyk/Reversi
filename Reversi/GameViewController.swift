@@ -15,8 +15,10 @@ class GameViewController: UIViewController {
     var ai: AI?
     @IBOutlet var player1Label: UILabel!
     @IBOutlet var score1: UILabel!
-    var player2name = "P2"
-    var player1name = "P1"
+    struct PlayerName{
+        static let Player1 = "P1"
+        static var Player2 = "P2"
+    }
     @IBOutlet var player2Label: UILabel!
     @IBOutlet var score2: UILabel!
     
@@ -59,9 +61,9 @@ class GameViewController: UIViewController {
         player2Label.textColor = PlayerColor.Player2
         score1.textColor = PlayerColor.Player1
         score2.textColor = PlayerColor.Player2
-        
-        player2Label.text = player2name + " score:"
-        player1Label.text = player1name + " score:"
+
+        player1Label.text = PlayerName.Player1 + " score:"
+        player2Label.text = PlayerName.Player2 + " score:"
     }
     override func viewDidLayoutSubviews() {
         createCells()
@@ -101,9 +103,9 @@ class GameViewController: UIViewController {
     }
     var betterPlayer: String{
         if Int(score1.text!) > Int(score2.text!){
-            return player1name
+            return PlayerName.Player1
         }
-        return player2name
+        return PlayerName.Player2
     }
     private func startNewGame(alert: UIAlertAction!){
         reversi = GameEngine()
@@ -112,8 +114,13 @@ class GameViewController: UIViewController {
     private func updateLabels(){
         score1.text = "\(reversi.board.getScore(of: Choice.Player1))"
         score2.text = "\(reversi.board.getScore(of: Choice.Player2))"
-        self.navigationController?.navigationBar.topItem?.title =
-                                reversi.turn.description+" turn"
+        if reversi.turn != Choice.Nothing {
+            self.navigationController?.navigationBar.topItem?.title =
+                reversi.turn.description+" turn"
+        } else {
+            self.navigationController?.navigationBar.topItem?.title =
+                "Game Over"
+        }
     }
     private func updatePossibleMovesOnBoard(){
         let possibleMoves = reversi.givePossibleMoves()
