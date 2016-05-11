@@ -62,7 +62,7 @@ class GameEngine: CustomStringConvertible {
         return board.description
     }
 }
-class Board: CustomStringConvertible {// make some code cleaning find some good solution for make move and get possible move
+class Board: CustomStringConvertible {
 
     private struct Size{
         static let Width = 8;

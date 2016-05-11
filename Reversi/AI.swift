@@ -61,16 +61,15 @@ class AI {
         }
         
         var score: Int = 0
-        
         for x in 0..<board.board.count{
             for y in 0..<board.board[x].count{
                 switch board.board[x][y] {
                 case Choice.Nothing:
                     continue
-                case player:
-                    score += scores[x][y]
-                default:
+                case Choice.Player1:
                     score -= scores[x][y]
+                case Choice.Player2:
+                    score += scores[x][y]
                 }
             }
         }
