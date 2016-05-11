@@ -44,9 +44,9 @@
 		7A619E6C1CCFCDC9001AEF58 /* Reversi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reversi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A619E6F1CCFCDC9001AEF58 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7A619E741CCFCDC9001AEF58 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		7A619E761CCFCDC9001AEF58 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7A619E761CCFCDC9001AEF58 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Reversi/Assets.xcassets; sourceTree = "<group>"; };
 		7A619E791CCFCDC9001AEF58 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		7A619E7B1CCFCDC9001AEF58 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7A619E7B1CCFCDC9001AEF58 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Reversi/Info.plist; sourceTree = "<group>"; };
 		7A619E801CCFCDC9001AEF58 /* ReversiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReversiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A619E841CCFCDC9001AEF58 /* ReversiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReversiTests.swift; sourceTree = "<group>"; };
 		7A619E861CCFCDC9001AEF58 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -87,8 +87,6 @@
 		7A619E631CCFCDC9001AEF58 = {
 			isa = PBXGroup;
 			children = (
-				7A619E9D1CCFCE30001AEF58 /* .gitignore */,
-				7AA729DC1CDFAB6100D08F60 /* weights.txt */,
 				7A619E6E1CCFCDC9001AEF58 /* Reversi */,
 				7A619E831CCFCDC9001AEF58 /* ReversiTests */,
 				7A619E8E1CCFCDC9001AEF58 /* ReversiUITests */,
@@ -109,15 +107,11 @@
 		7A619E6E1CCFCDC9001AEF58 /* Reversi */ = {
 			isa = PBXGroup;
 			children = (
-				7A619E6F1CCFCDC9001AEF58 /* AppDelegate.swift */,
-				7A619E731CCFCDC9001AEF58 /* Main.storyboard */,
-				7A2DD5061CD890A100F883E2 /* GameEngine.swift */,
-				7A2DD5041CD8901900F883E2 /* AI.swift */,
-				7A619EA01CCFD484001AEF58 /* MainMenuViewController.swift */,
-				7A619EA21CCFD492001AEF58 /* GameViewController.swift */,
-				7A619E761CCFCDC9001AEF58 /* Assets.xcassets */,
-				7A619E781CCFCDC9001AEF58 /* LaunchScreen.storyboard */,
-				7A619E7B1CCFCDC9001AEF58 /* Info.plist */,
+				7AB86F161CE35FB000D508EA /* Support Files */,
+				7AB86F1A1CE360DD00D508EA /* Delegates */,
+				7AB86F181CE3603D00D508EA /* StoryBoards */,
+				7AB86F191CE3609600D508EA /* Business Logic */,
+				7AB86F171CE35FE000D508EA /* View Controllers */,
 			);
 			path = Reversi;
 			sourceTree = "<group>";
@@ -138,6 +132,53 @@
 				7A619E911CCFCDC9001AEF58 /* Info.plist */,
 			);
 			path = ReversiUITests;
+			sourceTree = "<group>";
+		};
+		7AB86F161CE35FB000D508EA /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				7A619E761CCFCDC9001AEF58 /* Assets.xcassets */,
+				7A619E9D1CCFCE30001AEF58 /* .gitignore */,
+				7AA729DC1CDFAB6100D08F60 /* weights.txt */,
+				7A619E7B1CCFCDC9001AEF58 /* Info.plist */,
+			);
+			name = "Support Files";
+			path = ..;
+			sourceTree = "<group>";
+		};
+		7AB86F171CE35FE000D508EA /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				7A619EA01CCFD484001AEF58 /* MainMenuViewController.swift */,
+				7A619EA21CCFD492001AEF58 /* GameViewController.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		7AB86F181CE3603D00D508EA /* StoryBoards */ = {
+			isa = PBXGroup;
+			children = (
+				7A619E781CCFCDC9001AEF58 /* LaunchScreen.storyboard */,
+				7A619E731CCFCDC9001AEF58 /* Main.storyboard */,
+			);
+			name = StoryBoards;
+			sourceTree = "<group>";
+		};
+		7AB86F191CE3609600D508EA /* Business Logic */ = {
+			isa = PBXGroup;
+			children = (
+				7A2DD5061CD890A100F883E2 /* GameEngine.swift */,
+				7A2DD5041CD8901900F883E2 /* AI.swift */,
+			);
+			name = "Business Logic";
+			sourceTree = "<group>";
+		};
+		7AB86F1A1CE360DD00D508EA /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				7A619E6F1CCFCDC9001AEF58 /* AppDelegate.swift */,
+			);
+			name = Delegates;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
